@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 using UseCases.DataStorePluginInterfaces;
 using UseCases.UserCaseInterfaces;
 
-namespace UseCases
+namespace UseCases.CategoriesUserCases
 {
-    public class DeleteCategoryUseCase : IDeleteCategoryUseCase
+    public class ViewCategoriesUseCase : IViewCategoriesUseCase
     {
         private readonly ICategoryRepository _categoryRepository;
 
-        public DeleteCategoryUseCase(ICategoryRepository categoryRepository)
+        public ViewCategoriesUseCase(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
-
-        public void Execute(int categoryId)
+        public IEnumerable<Category> Execute()
         {
-            _categoryRepository.DeleteCategory(categoryId);
+            return _categoryRepository.GetCategories();
         }
     }
 }

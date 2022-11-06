@@ -1,5 +1,6 @@
 ﻿@page "/categories"
 @inject UseCases.UserCaseInterfaces.IViewCategoriesUseCase ViewCategoryUseCase
+@inject UseCases.UserCaseInterfaces.IDeleteCategoryUseCase DeleteCategoryUseCase
 @inject NavigationManager NavigationManager
 
 <h3>Manage Categories</h3>
@@ -12,6 +13,7 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +23,7 @@
                     <td>@category.Name</td>
                     <td>@category.Description</td>
                     <td><button type="button" @onclick="() => EditCategory(category)" class="btn btn-link">Edit</button></td>
+                    <td><button type="button" @onclick="() => DeleteCategory(category.Id)" class="btn btn-link">Delete</button></td>
                 </tr>
             }
         </tbody>
@@ -45,5 +48,16 @@
     private void EditCategory(Category category)
     {
         NavigationManager.NavigateTo($"/editCategory/{category.Id}");
+    }
+
+    private void DeleteCategory(int categoryId)
+    {
+        DeleteCategoryUseCase.Execute(categoryId);
+        LoadCategories();
+    }
+
+    private void LoadCategories()
+    {
+        _categories = ViewCategoryUseCase.Execute().ToList();
     }
 }

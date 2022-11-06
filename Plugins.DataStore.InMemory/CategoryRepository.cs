@@ -21,10 +21,24 @@ namespace Plugins.DataStore.InMemory
             if (_categories.Any(c => c.Name.Equals(category.Name, StringComparison.OrdinalIgnoreCase)))
                 return;
 
-            var maxId = _categories.Max(c => c.Id);
-            category.Id = maxId + 1;
+            if (_categories != null && _categories.Count > 0)
+            {
+                var maxId = _categories.Max(c => c.Id);
+                category.Id = maxId + 1;
+            }
+            else
+            {
+                category.Id = 1;
+            }
 
             _categories.Add(category);
+        }
+
+        public void DeleteCategory(int categoryId)
+        {
+            var categoryToRemove = GetCategoryById(categoryId);
+
+            _categories?.Remove(categoryToRemove);
         }
 
         public IEnumerable<Category> GetCategories()

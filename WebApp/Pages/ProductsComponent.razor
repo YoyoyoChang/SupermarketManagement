@@ -1,8 +1,11 @@
 ﻿@page "/products"
-@inject UseCases.ProductsUseCases.IViewProductsUseCase ViewProductsUseCase
+@inject UseCases.UserCaseInterfaces.IViewProductsUseCase ViewProductsUseCase
 @inject UseCases.UserCaseInterfaces.IGetCategoryByIdUseCase GetCategoryByIdUseCase
+@inject NavigationManager NavigationManager
+
 <h3>Products</h3>
 <br/>
+
 @if(_products != null)
 {
     <table class="table">
@@ -18,15 +21,17 @@
             @foreach(var product in _products)
             {
                  <tr>
-                    <td>@GetCategoryByIdUseCase.Execute(product.CategoryId)?.Name</td>
+                    <td>@GetCategoryByIdUseCase.Execute(product.CategoryId.Value)?.Name</td>
                     <td>@product.Name</td>
-                    <td>@(Math.Round(product.Price, 2))</td>
+                    <td>@(Math.Round(product.Price.Value, 2))</td>
                     <td>@product.Quantity</td>
                 </tr>   
             }
         </tbody>
     </table>
 }
+<br/>
+<button type="button" @onclick="OnClickAddProduct" class="btn btn-primary">Add Product</button>
 @code {
     private List<Product> _products;
 
@@ -34,5 +39,10 @@
     {
         base.OnInitialized();
         _products = ViewProductsUseCase.Execute().ToList();
+    }
+
+    private void OnClickAddProduct()
+    {
+        NavigationManager.NavigateTo("/addproduct");
     }
 }

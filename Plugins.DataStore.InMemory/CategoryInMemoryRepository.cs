@@ -12,7 +12,8 @@ namespace Plugins.DataStore.InMemory
             {
                 new Category(){ Id = 1, Name = "Beverage", Description = "A good beverage"} ,
                 new Category(){ Id = 2, Name = "Bakery", Description = "A good bakery"},
-                new Category(){ Id = 3, Name = "Meat", Description = "A good meat"}
+                new Category(){ Id = 3, Name = "Meat", Description = "A good meat"},
+                new Category(){ Id = 4, Name = "Neil's Favorite", Description = "Neil's favorite selection"},
             };
         }
 

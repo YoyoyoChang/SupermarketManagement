@@ -8,5 +8,6 @@ namespace UseCases.DataStorePluginInterfaces
         void AddProduct(Product product);
         void EditProduct(Product product);
         Product GetProductById(int productId);
+        void DeleteProduct(int productId);
     }
 }

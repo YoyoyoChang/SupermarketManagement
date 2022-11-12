@@ -2,7 +2,7 @@
 using UseCases.DataStorePluginInterfaces;
 using UseCases.UserCaseInterfaces;
 
-namespace UseCases.CategoriesUserCases
+namespace UseCases.ProductsUseCases
 {
     public class GetProductByIdUseCase : IGetProductByIdUseCase
     {

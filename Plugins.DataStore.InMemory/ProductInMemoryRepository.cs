@@ -16,7 +16,7 @@ namespace Plugins.DataStore.InMemory
                 new Product{ Id = 3, CategoryId = 2, Name = "Whole Wheat Bread", Price = 1.50, Quantity = 50 },
                 new Product{ Id = 4, CategoryId = 2, Name = "White Bread", Price = 1.50, Quantity = 50 },
                 new Product{ Id = 5, CategoryId = 4, Name = "白菜", Price = 999999999, Quantity = 1 },
-            };    
+            };
         }
 
         public void AddProduct(Product product)
@@ -35,6 +35,23 @@ namespace Plugins.DataStore.InMemory
             }
 
             _products.Add(product);
+        }
+
+        public void EditProduct(Product product)
+        {
+            var productToUpdate = GetProductById(product.Id);
+            if (productToUpdate != null)
+            {
+                productToUpdate.Name = product.Name;
+                productToUpdate.CategoryId = product.CategoryId;
+                productToUpdate.Quantity = product.Quantity;
+                productToUpdate.Price = product.Price;
+            }
+        }
+
+        public Product GetProductById(int productId)
+        {
+            return _products?.FirstOrDefault(c => c.Id == productId);
         }
 
         public IEnumerable<Product> GetProducts()

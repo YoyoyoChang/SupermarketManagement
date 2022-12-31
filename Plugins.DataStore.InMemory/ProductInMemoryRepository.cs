@@ -56,6 +56,11 @@ namespace Plugins.DataStore.InMemory
             }
         }
 
+        public IEnumerable<Product> GerProductsByCategory(int categoryId)
+        {
+            return _products.Where(p => p.CategoryId == categoryId);
+        }
+
         public Product GetProductById(int productId)
         {
             return _products?.FirstOrDefault(c => c.Id == productId);

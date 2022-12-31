@@ -1,4 +1,5 @@
 using Plugins.DataStore.InMemory;
+using UseCases;
 using UseCases.CategoriesUserCases;
 using UseCases.DataStorePluginInterfaces;
 using UseCases.ProductsUseCases;
@@ -27,6 +28,7 @@ builder.Services.AddTransient<IAddProductUseCase, AddProductUseCase>();
 builder.Services.AddTransient<IEditProductUseCase, EditProductUseCase>();
 builder.Services.AddTransient<IGetProductByIdUseCase, GetProductByIdUseCase>();
 builder.Services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
+builder.Services.AddTransient<IViewProductByCategoryId, ViewProductByCategoryId>();
 
 var app = builder.Build();
 

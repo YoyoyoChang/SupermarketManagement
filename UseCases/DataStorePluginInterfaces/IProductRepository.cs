@@ -9,5 +9,6 @@ namespace UseCases.DataStorePluginInterfaces
         void EditProduct(Product product);
         Product GetProductById(int productId);
         void DeleteProduct(int productId);
+        IEnumerable<Product> GerProductsByCategory(int categoryId);
     }
 }
